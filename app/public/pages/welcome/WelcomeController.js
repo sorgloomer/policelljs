@@ -1,7 +1,23 @@
 angular.module('policellApp')
-.controller('WelcomeController', function($scope) {
+.controller('WelcomeController', function($q, $scope, WelcomeService) {
+  function $done(p) {
+    $q.when(p, null, function(e) {
+      console.error(e);
+    });
+  }
+  function $finally(p, fn) {
+    var success = false, value = null;
+    return $q.when(p, function(r) {
+      success = true; value = r;
+      return fn(success, value);
+    }, function(e) {
+      success = false; value = e;
+      return fn(success, value);
+    }).then(function() {
+      return success ? value : $q.reject(value);
+    });
+  }
 
-	$scope.list = [1,2,3,5,7,9];
   $scope.gridOptions = {
     data: 'myData',
     enableColumnResize: true,
@@ -10,40 +26,40 @@ angular.module('policellApp')
     enableCellEdit: true,
     multiSelect: false,
     
+    headerRowHeight: 24,
+    rowHeight: 22,
+    
     columnDefs: [
-      { field: 'firstName', displayName: 'First Name'  , width: 50 , index: 1 },
-      { field: 'lastName',  displayName: 'Last Name'   , width: 50 , index: 0 , pinned: true },
-      { field: 'company',   displayName: 'Company'                 , index: 2 },
-      { field: 'employed',  displayName: 'Employed'                , index: 3 }
+      { field: 'id',    displayName: 'id'      , width: 50 , index: 1 },
+      { field: 'info',  displayName: 'Info'    , width: 50 , index: 0 },
+      { field: 'age',   displayName: 'Életkor' , index: 2 }
     ]
   };
   
-  var a = {
-    "firstName": "Cox",
-    "lastName": "Carney",
-    "company": "Enormo",
-    "employed": true
-  };
-      
-  $scope.myData = [a,
-    {
-      "firstName": "Lorraine",
-      "lastName": "Wise",
-      "company": "Comveyer",
-      "employed": false
-    },a,
-    {
-      "firstName": "Nancy",
-      "lastName": "Waters",
-      "company": "Fuelton",
-      "employed": false
-    }
-  ];
-  
+  $scope.myData = [];
+    
   $scope.columns = null;
+
+  $scope.refresh = function() {
+    WelcomeService.getData().then(function(x) { $scope.myData = x; });
+  };
+  $scope.add = function() {
+    $done(
+      $finally(
+        WelcomeService.addData(),
+        $scope.refresh
+      )
+    );  
+  };
   
-  $scope.$on('ngGridEventColumns', function(eventObj, newColumns){
+  $scope.$on('ngGridEventColumns', function(evt, newColumns){
     $scope.columns = newColumns;
   });
+  $scope.$on('ngGridEventEndCellEdit', function(event) {
+    var scp = event.targetScope;
+    $done(WelcomeService.setData(scp.row.entity, scp.col.field));
+  });
+  
+  $scope.refresh();
   
 });

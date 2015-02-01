@@ -1,9 +1,6 @@
 <div>
+  <span class="btn btn-sm" ng-click="refresh()">Frissítés</span>
+  <span class="btn btn-sm" ng-click="add()">Új</span>
+
   <div ng-grid="gridOptions" class="gridStyle"></div>
-  <div>
-    {{ 0 && gridOptions.columnDefs }}
-  </div>
-  <div>
-    {{ 0 && columns }}
-  </div>
 </div>
