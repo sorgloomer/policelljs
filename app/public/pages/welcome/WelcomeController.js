@@ -5,6 +5,9 @@ angular.module('policellApp')
       console.error(e);
     });
   }
+  
+  $scope.selected = null;
+  
   function $finally(p, fn) {
     var success = false, value = null;
     return $q.when(p, function(r) {
@@ -51,7 +54,7 @@ angular.module('policellApp')
       )
     );  
   };
-  
+    
   $scope.$on('ngGridEventColumns', function(evt, newColumns){
     $scope.columns = newColumns;
   });

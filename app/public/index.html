@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="components/fullcalendar/fullcalendar.css" />
   <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" href="components/ng-grid/ng-grid.css" />
+  <link rel="stylesheet" href="components/angular-ui-select/dist/select.css" />
   <!-- endbower -->  
   <!-- bower:js -->
   <script src="components/jquery/dist/jquery.js"></script>
@@ -16,6 +17,7 @@
   <script src="components/fullcalendar/fullcalendar.js"></script>
   <script src="components/angular-ui-calendar/src/calendar.js"></script>
   <script src="components/ng-grid/build/ng-grid.js"></script>
+  <script src="components/angular-ui-select/dist/select.js"></script>
   <!-- endbower -->
 	
   <link rel="stylesheet" href="style.css" />
@@ -25,8 +27,8 @@
 </head>
 <body>
 	
-  <div class="container">
-    <div ng-view></div>
+  <div class="contents">
+    <div ng-view class="fill"></div>
   </div>
 </body>
 </html>

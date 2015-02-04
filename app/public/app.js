@@ -1,7 +1,8 @@
 angular.module('policellApp', [
 	'ngRoute',
   'ngGrid',
-  'ui.calendar'
+  'ui.calendar',
+  'ui.select'
 ])
 .config(function($routeProvider, $provide) {
   

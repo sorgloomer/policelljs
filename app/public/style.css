@@ -1,8 +1,21 @@
 .gridStyle {
+  position: absolute;
+  top: 50px;
+  bottom: 5px;
+  left: 5px;
+  right: 5px;
   border: 1px solid rgb(212,212,212);
-  width: 400px; 
-  height: 400px;
+  padding: 0;
+  margin: 0;
   font-size: 11px;
+}
+
+.search {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 18px;
+  width: 170px;
 }
 
 .ngHeaderText {
@@ -11,4 +24,19 @@
 
 .ngCellText {
   padding: 4px;
+}
+
+.contents {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  bottom: 5px;
+  left: 5px;
+}
+html, body, .fill {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
