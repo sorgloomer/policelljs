@@ -1,7 +1,8 @@
 angular.module('policellApp', [
+  'ngSanitize',
 	'ngRoute',
   'ngGrid',
-  'ui.calendar',
+  'ui.date',
   'ui.select'
 ])
 .config(function($routeProvider, $provide) {
@@ -9,7 +10,7 @@ angular.module('policellApp', [
 	$routeProvider
   .otherwise({
     controller: 'WelcomeController',
-    templateUrl: 'pages/welcome/WelcomePage.html'
+    templateUrl: 'pages/WelcomePage.html'
   });
     
     /*
