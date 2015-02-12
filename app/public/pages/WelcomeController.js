@@ -1,4 +1,23 @@
 angular.module('policellApp')
+.directive('ngModel2', function($compile) {
+  function changer(attr) {
+    return 'onuser.' + attr + '(' + attr + ",'" + attr + "')";
+  }
+  function link(scope, element, attrs) {
+    element.removeAttr('ng-model2');
+    element.removeAttr('data-ng-model2');
+    element.attr('ng-model', attrs.ngModel2);
+    element.attr('ng-change', changer(attrs.ngModel2));
+    $compile(element)(scope);
+  }
+  return {
+    restrict: 'A',
+    replace: false,
+    terminal: true,
+    priority: 1000,
+    link: link
+  };
+})
 .factory('i18n', function($rootScope) {
   var currentLocale = '', S = null;
   var i18n = {
@@ -120,7 +139,7 @@ angular.module('policellApp')
 .controller('WelcomeController', function($q, $scope, $load, WelcomeService, i18n) {
   i18n.m('hu', {
     date_sf: 'yy-mm-dd',
-    date_lf: 'yyyy-mm-dd'
+    date_lf: 'yyyy-MM-dd'
   });
   i18n.locale('hu');
  
@@ -178,6 +197,17 @@ angular.module('policellApp')
     $load(WelcomeService.setData(scp.row.entity, scp.col.field));
   });
   
-  $scope.refresh();
+  $scope.num1 = 0;
+  $scope.num2 = 0;
   
+   $scope.onuser = {
+    num1: function(v) {
+      $scope.num2 = v + 1;
+    },
+    num2: function(v) {
+      $scope.num1 = v + 1;
+    }
+  };
+  
+  $scope.refresh();
 });
