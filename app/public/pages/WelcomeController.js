@@ -136,6 +136,24 @@ angular.module('policellApp')
   $load.make = make;
   return $load;
 })
+.directive('myDateCellEditor', function() {
+  function link(scope, element, attrs) {
+    scope.emitEditEnd = function() {
+      scope.$emit('ngGridEventEndCellEdit');
+    };
+    scope.$on('ngGridEventStartCellEdit', function () {
+      console.log('start');
+      element = element.children();
+      element.focus();
+      element.select();
+    });
+  }
+  return {
+    restrict: 'E',
+    template: '<input type="text" data-type="date" ui-date="{dateFormat:S.date_sf,onClose:emitEditEnd}" class="form-control" ng-model="row.entity[col.field]"/>',
+    link: link
+  };
+})
 .controller('WelcomeController', function($q, $scope, $load, WelcomeService, i18n) {
   i18n.m('hu', {
     date_sf: 'yy-mm-dd',
@@ -160,12 +178,12 @@ angular.module('policellApp')
       { field: 'id',    displayName: 'id'      , width: 40  , index: 1 },
       { field: 'info',  displayName: 'Szöveg'  , width: 200 , index: 0 },
       { field: 'age',   displayName: 'Szám'    , index: 2,
-        editableCellTemplate: '<input type="number" class="form-control" ng-input="COL_FIELD" ng-model="COL_FIELD" />'
+        editableCellTemplate: '<input type="number" class="form-control" ng-input ng-model="COL_FIELD" />'
       },
       {
         field: 'date',  displayName: 'Dátum'   , index: 3,
         cellFilter: 'date:S.date_lf',
-        editableCellTemplate: '<input type="text" data-type="date" ui-date={dateFormat:S.date_sf} class="form-control" ng-input="COL_FIELD" ng-model="COL_FIELD"/>'
+        editableCellTemplate: '<my-date-cell-editor/>'
       }
     ]
   };
