@@ -142,7 +142,6 @@ angular.module('policellApp')
       scope.$emit('ngGridEventEndCellEdit');
     };
     scope.$on('ngGridEventStartCellEdit', function () {
-      console.log('start');
       element = element.children();
       element.focus();
       element.select();
