@@ -66,6 +66,19 @@ angular.module('policellApp').factory('$call', function() {
     return def.promise;
   };
 })
+.factory('$apply2', function() {
+  return function $apply2(scope, fn) {
+    if (fn) {
+      switch (scope.$root.$$phase) {
+        case '$apply':
+        case '$digest':
+          return fn();
+        default:
+          return scope.$apply(fn);
+      }
+    }
+  };
+})
 .factory('util', function() {
   function range(a, fn) {
     if (fn === undefined) fn = angular.identity;

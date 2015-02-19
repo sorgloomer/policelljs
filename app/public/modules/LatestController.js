@@ -1,5 +1,5 @@
 angular.module('policellApp').controller('LatestController', function(
-  $q, $scope, $load,
+  $q, $scope, $load, $apply2,
   CommonTableDefinition,
   LatestService) {
 
@@ -30,8 +30,10 @@ angular.module('policellApp').controller('LatestController', function(
     $scope.columns = newColumns;
   });
   $scope.$on('ngGridEventEndCellEdit', function(event) {
-    var scp = event.targetScope;
-    $load(LatestService.setData(scp.row.entity, scp.col.field));
+    $apply2($scope, function() {
+      var scp = event.targetScope;
+      $load(LatestService.setData(scp.row.entity, scp.col.field));
+    });
   });
   
   $scope.refresh();
