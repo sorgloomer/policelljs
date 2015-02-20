@@ -1,0 +1,7 @@
+<div class="fill">
+  <input ng-change="notifySearch()" ng-model="searchText">
+  <div ng-repeat="customer in customers">
+    <strong>{{ customer.name }}</strong>
+    <div style="font-size:10px;">{{ customer.comment }}</div>
+  </div>
+</div>

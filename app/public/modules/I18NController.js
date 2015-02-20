@@ -5,6 +5,7 @@ angular.module('policellApp').controller('I18NController', function(i18n) {
 
     menu_title_latest: 'Legutóbbi',
     menu_title_search: 'Keresés',
+    menu_title_customers: 'Cégek',
 
     column_id: 'ID',
     column_text: 'Szöveg',

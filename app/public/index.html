@@ -29,17 +29,20 @@
 
   <script src="modules/TableDirectives.js"></script>
   <script src="modules/HeaderController.js"></script>
+  <script src="modules/HeaderService.js"></script>
   <script src="modules/CommonTableDefinition.js"></script>
   <script src="modules/SearchController.js"></script>
   <script src="modules/LatestController.js"></script>
-  <script src="modules/LatestService.mock.js"></script>
+  <script src="modules/CustomersController.js"></script>
+  <script src="modules/DataService.mock.js"></script>
 </head>
 <body>
 
   <div class="contents">
     <div class="header-bar" ng-controller="HeaderController">
-      <a class="header-item" href="" ng-class="{ selected: isPage('main') }" ng-click="openPage('main')">{{ S.menu_title_latest }}</a>
+      <a class="header-item" href="" ng-class="{ selected: isPage('latest') }" ng-click="openPage('latest')">{{ S.menu_title_latest }}</a>
       <a class="header-item" href="" ng-class="{ selected: isPage('search') }" ng-click="openPage('search')">{{ S.menu_title_search }}</a>
+      <a class="header-item" href="" ng-class="{ selected: isPage('customers') }" ng-click="openPage('customers')">{{ S.menu_title_customers }}</a>
     </div>
 
     <div class="tabbed-area" ng-view></div>

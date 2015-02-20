@@ -2,8 +2,25 @@ angular.module('policellApp').factory('$call', function() {
   var slice = Array.prototype.slice;
   return function $call(fn /*, ...args */) {
     if (typeof fn === 'function') {
-      return fn.apply(null, slice.call(arguments, 1));
+      return fn.apply(undefined, slice.call(arguments, 1));
     }
+  };
+}).factory('$qfapply', function($q) {
+  return function $qfapply(fn , args) {
+    try {
+      if (typeof fn === 'function') {
+        return $q.when(fn.apply(undefined, args));
+      } else {
+        return $q.when();
+      }
+    } catch(e) {
+      return $q.reject(e);
+    }
+  };
+}).factory('$qfcall', function($qfapply) {
+  var slice = Array.prototype.slice;
+  return function $qfcall(fn /*, ...args */) {
+    return $qfapply(fn, slice.call(arguments, 1));
   };
 }).factory('$finally', function($q) {
   return function $finally(p, fn) {
@@ -51,6 +68,7 @@ angular.module('policellApp').factory('$call', function() {
         if (!(--loadCount)) scope[field] = false;
         $call(fn, s, v);
       });
+      return p;
     };
   }
   var $load = make($rootScope);
@@ -67,13 +85,19 @@ angular.module('policellApp').factory('$call', function() {
   };
 })
 .factory('$apply2', function() {
-  return function $apply2(scope, fn) {
+  return function $apply2(scope, fn, noWarn) {
     if (fn) {
       switch (scope.$root.$$phase) {
         case '$apply':
         case '$digest':
+          if (!noWarn) {
+            console.warn('Change is already in $apply');
+          }
           return fn();
         default:
+          if (!noWarn) {
+            console.warn('Change is not in $apply');
+          }
           return scope.$apply(fn);
       }
     }

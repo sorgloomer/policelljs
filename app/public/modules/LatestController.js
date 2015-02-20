@@ -1,7 +1,7 @@
 angular.module('policellApp').controller('LatestController', function(
   $q, $scope, $load, $apply2,
   CommonTableDefinition,
-  LatestService) {
+  DataService) {
 
   $scope.name = { selected: null };
   
@@ -14,25 +14,27 @@ angular.module('policellApp').controller('LatestController', function(
   $scope.columns = null;
 
   
-  LatestService.getNames().then(function(r) { $scope.names = r; });
+  DataService.getNames().then(function(r) { $scope.names = r; });
   $scope.searchNames = function(part) {
-    $load(LatestService.searchNames(part).then(function(r) { $scope.names = r; }));
+    $load(DataService.searchNames(part).then(function(r) { $scope.names = r; }));
   };
   
   $scope.refresh = function() {
-    $load(LatestService.getData().then(function(x) { $scope.myData = x; }));
+    $load(DataService.getData().then(function(x) { $scope.myData = x; }));
   };
   $scope.add = function() {
-    $load(LatestService.addData(), $scope.refresh);
+    $load(DataService.addData(), $scope.refresh);
   };
     
   $scope.$on('ngGridEventColumns', function(evt, newColumns){
-    $scope.columns = newColumns;
+    $apply2($scope, function() {
+      $scope.columns = newColumns;
+    });
   });
   $scope.$on('ngGridEventEndCellEdit', function(event) {
     $apply2($scope, function() {
       var scp = event.targetScope;
-      $load(LatestService.setData(scp.row.entity, scp.col.field));
+      $load(DataService.setData(scp.row.entity, scp.col.field));
     });
   });
   
