@@ -1,5 +1,4 @@
-angular.module('policellApp')
-.factory('DataService', function($http) {
+angular.module('policellApp').factory('DataService', function($http) {
   function fl_data(x) {
     return x.data;
   }

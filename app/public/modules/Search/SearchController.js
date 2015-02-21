@@ -1,6 +1,7 @@
 angular.module('policellApp').controller('SearchController', function(
-  $q, $scope
+  $q, $scope, HeaderService
 ) {
+  HeaderService.notify('search');
 
   $scope.num1 = 0;
   $scope.num2 = 0;

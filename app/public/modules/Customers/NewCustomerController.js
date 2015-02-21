@@ -1,6 +1,8 @@
 angular.module('policellApp').controller('NewCustomerController', function(
-  $scope
+  $scope, HeaderService
 ) {
+  HeaderService.notify('customers/new');
+
   $scope.customer = {
     name: '',
     controller: ''

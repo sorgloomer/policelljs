@@ -11,11 +11,14 @@ angular.module('policellApp').controller('I18NController', function(i18n) {
     "label_customer_comment": "Megjegyzés",
 
     "button_new_customer": "Új cég...",
+    "button_save_customer": "Cég mentése",
 
     "column_id": "ID",
     "column_text": "Szöveg",
     "column_number": "Szám",
-    "column_date": "Dátum"
+    "column_date": "Dátum",
+
+    "header_new_customer": "Új cég regisztrálása"
   });
   i18n.locale('hu');
 });

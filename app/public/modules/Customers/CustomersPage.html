@@ -1,6 +1,6 @@
 <div class="fill">
-  <button class="brn btn-md">{{ S.button_new_customer }}</button>
-  <input ng-change="notifySearch()" ng-model="searchText">
+  <span class="btn btn-default" ng-click="newCustomer()">{{ S.button_new_customer }}</span>
+  <input class="form-control" ng-change="notifySearch()" ng-model="searchText">
   <div ng-repeat="customer in customers">
     <strong>{{ customer.name }}</strong>
     <div style="font-size:10px;">{{ customer.comment }}</div>

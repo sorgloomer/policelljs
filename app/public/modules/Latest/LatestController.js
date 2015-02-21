@@ -1,7 +1,9 @@
 angular.module('policellApp').controller('LatestController', function(
-  $q, $scope, $load, $apply2,
+  $q, $scope, $load, $apply2, HeaderService,
   CommonTableDefinition,
   DataService) {
+  HeaderService.notify('latest');
+
 
   $scope.name = { selected: null };
   
