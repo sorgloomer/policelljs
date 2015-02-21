@@ -30,6 +30,7 @@
   <script src="modules/common/TableDirectives.js"></script>
   <script src="modules/common/CommonTableDefinition.js"></script>
   <script src="modules/common/RouterController.js"></script>
+  <script src="modules/common/models.js"></script>
 
   <script src="modules/service/DataService.mock.js"></script>
   <script src="modules/Header/HeaderController.js"></script>
@@ -38,18 +39,20 @@
   <script src="modules/Latest/LatestController.js"></script>
   <script src="modules/Customers/CustomersController.js"></script>
   <script src="modules/Customers/NewCustomerController.js"></script>
+  <script src="modules/Customers/EditCustomerController.js"></script>
 </head>
 <body>
-
-  <div class="contents">
+  <div class="header-bar-fixed" ng-controller="HeaderController">
     <div class="header-bar" ng-controller="HeaderController">
-      <a class="header-item" href="" ng-class="{ selected: isPage('latest') }" ng-click="openPage('latest')">{{ S.menu_title_latest }}</a>
-      <a class="header-item" href="" ng-class="{ selected: isPage('search') }" ng-click="openPage('search')">{{ S.menu_title_search }}</a>
-      <a class="header-item" href="" ng-class="{ selected: isPage('customers') }" ng-click="openPage('customers')">{{ S.menu_title_customers }}</a>
+      <a class="header-item" href="" ng-class="{ selected: isPage('latest') }" ng-click="openPage('latest')">{{ ::S.menu_title_latest }}</a>
+      <a class="header-item" href="" ng-class="{ selected: isPage('search') }" ng-click="openPage('search')">{{ ::S.menu_title_search }}</a>
+      <a class="header-item" href="" ng-class="{ selected: isPage('customers') }" ng-click="openPage('customers')">{{ ::S.menu_title_customers }}</a>
+      <a class="header-item" ng-show="models.newCustomer" href="" ng-class="{ selected: isPage('customers/new') }" ng-click="openPage('customers/new')">{{ ::S.menu_title_new_customer }}</a>
     </div>
-
-    <div class="tabbed-area" ng-view></div>
   </div>
 
+  <div class="contents">
+    <div class="tabbed-area" ng-view></div>
+  </div>
 </body>
 </html>

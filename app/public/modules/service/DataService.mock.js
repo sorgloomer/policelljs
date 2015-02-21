@@ -1,5 +1,7 @@
 angular.module('policellApp').factory('DataService', function($q, $delay, util, NAMES, LOREM_IPSUM) {
 
+  var CUSTOMER_RESULT_COUNT = 15;
+
   function crawl(v) {
     return $delay(400, v);
   }
@@ -14,9 +16,14 @@ angular.module('policellApp').factory('DataService', function($q, $delay, util, 
 
   var lorem = LOREM_IPSUM.split(' ');
 
-  var customerCounter = 21;
-  var customers = util.range(20, function(i) {
-    return { id: i, name: NAMES[i], comment: lorem.slice(20*i, 20*i+20).join(' ') };
+  var customerCounter = NAMES.length;
+  var customers = util.range(customerCounter, function(i) {
+    return {
+      id: i,
+      name: NAMES[i],
+      comment: lorem.slice(6*i, 6*i+100).join(' '),
+      register_date: new Date(Date.now() - i * 20000000)
+    };
   });
   
   function setData(item, col) {
@@ -61,11 +68,22 @@ angular.module('policellApp').factory('DataService', function($q, $delay, util, 
     return crawl();
   }
 
+  function updateCustomer(id, newData) {
+    customers.forEach(function(c) {
+      if (c.id === id) {
+        c.name = newData.name;
+        c.comment = newData.comment;
+      }
+    });
+
+    return crawl();
+  }
+
   function findCustomers(part) {
     part = (''+part).toLowerCase();
     return crawl(angular.copy(customers.filter(function(customer) {
       return util.like(customer.name, part) || util.like(customer.comment, part);
-    }).slice(0, 5)));
+    }).slice(-CUSTOMER_RESULT_COUNT).reverse()));
   }
   function findCustomerById(id) {
     return crawl(angular.copy(customers.filter(function(customer) {
@@ -74,7 +92,7 @@ angular.module('policellApp').factory('DataService', function($q, $delay, util, 
   }
 
   function getLatestCustomers() {
-    return crawl(angular.copy(customers.slice(0, 5)));
+    return crawl(angular.copy(customers.slice(-CUSTOMER_RESULT_COUNT).reverse()));
   }
 
   return {
@@ -83,6 +101,7 @@ angular.module('policellApp').factory('DataService', function($q, $delay, util, 
     addData: addData,
     searchNames: searchNames,
     getNames: getNames,
+    updateCustomer: updateCustomer,
 
     addCustomer: addCustomer,
     findCustomers: findCustomers,
@@ -119,4 +138,43 @@ angular.module('policellApp').factory('DataService', function($q, $delay, util, 
   "qui semel fuit? Tecum optime, deinde etiam cum mediocri amico. Sit sane ista voluptas. Si verbum sequimur, primum longius verbum praepositum quam bonum. Summum ením " +
   "bonum exposuit vacuitatem doloris; Quae duo sunt, unum facit. Sic consequentibus vestris sublatis prima tolluntur. Quod totum contra est. Audeo dicere, inquit. " +
   "Quod quidem iam fit etiam in Academia. Stoicos roga. Sit ista in Graecorum levitate perversitas, qui maledictis insectantur eos, a quibus de veritate dissentiunt. " +
-  "Quid enim de amicitia statueris utilitatis causa expetenda vides.");
+  "Quid enim de amicitia statueris utilitatis causa expetenda vides." +
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum " +
+  "imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu " +
+  "ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean " +
+  "quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, " +
+  "luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum " +
+  "velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing " +
+  "diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam " +
+  "ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at " +
+  "interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed " +
+  "non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum " +
+  "tincidunt malesuada tellus. Ut ultrices ultrices enim. Curabitur sit amet mauris. Morbi in dui quis est pulvinar ullamcorper. Nulla facilisi. Integer lacinia sollicitudin massa. " +
+  "Cras metus. Sed aliquet risus a tortor. Integer id quam. Morbi mi. Quisque nisl felis, venenatis tristique, dignissim in, ultrices sit amet, augue. Proin sodales libero eget ante. " +
+  "Nulla quam. Aenean laoreet. Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, pede. Ut orci risus, accumsan porttitor, cursus quis, aliquet eget, justo. Sed pretium " +
+  "blandit orci. Ut eu diam at pede suscipit sodales. Aenean lectus elit, fermentum non, convallis id, sagittis at, neque. Nullam mauris orci, aliquet et, iaculis et, viverra vitae, " +
+  "ligula. Nulla ut felis in purus aliquam imperdiet. Maecenas aliquet mollis lectus. Vivamus consectetuer risus et tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+  "Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed " +
+  "augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales " +
+  "ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin " +
+  "ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus " +
+  "metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos " +
+  "himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. " +
+  "Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus " +
+  "magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere " +
+  "cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec " +
+  "lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus. Ut ultrices ultrices enim. Curabitur sit amet mauris. Morbi in dui quis est pulvinar " +
+  "ullamcorper. Nulla facilisi. Integer lacinia sollicitudin massa. Cras metus. Sed aliquet risus a tortor. Integer id quam. Morbi mi. Quisque nisl felis, venenatis tristique, " +
+  "dignissim in, ultrices sit amet, augue. Proin sodales libero eget ante. Nulla quam. Aenean laoreet. Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, pede. Ut orci " +
+  "risus, accumsan porttitor, cursus quis, aliquet eget, justo. Sed pretium blandit orci. Ut eu diam at pede suscipit sodales. Aenean lectus elit, fermentum non, convallis id, " +
+  "sagittis at, neque. Nullam mauris orci, aliquet et, iaculis et, viverra vitae, ligula. Nulla ut felis in purus aliquam imperdiet. Maecenas aliquet mollis lectus. Vivamus " +
+  "consectetuer risus et tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem " +
+  "at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti " +
+  "sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. " +
+  "Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit " +
+  "quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat " +
+  "condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor " +
+  "neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. " +
+  "Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa " +
+  "mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent " +
+  "blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum si.");

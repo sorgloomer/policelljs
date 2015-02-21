@@ -46,6 +46,10 @@ angular.module('policellApp').controller('CustomersController', function(
     HeaderService.openPage('customers/new');
   };
 
+  $scope.editCustomer = function(customer) {
+    HeaderService.openPage('customers/edit/' + customer.id);
+  };
+
 
 
   $scope.refresh();
