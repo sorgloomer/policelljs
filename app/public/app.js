@@ -14,14 +14,16 @@ angular.module('policellApp', [
       controller: 'CustomersController',
       templateUrl: 'modules/CustomersPage.html'
     })
+    .when('/customers', {
+      controller: 'CustomersController',
+      templateUrl: 'modules/CustomersPage.html'
+    })
     .when('/latest', {
       controller: 'LatestController',
       templateUrl: 'modules/LatestPage.html'
     })
     .otherwise({
-      controller: function(HeaderService) {
-        HeaderService.openPage('latest');
-      },
+      controller: 'RouterController',
       template: ''
     });
 });
