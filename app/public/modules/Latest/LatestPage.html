@@ -7,14 +7,10 @@
     </div>
 
     <div class="pagebar-right">
-      <ui-select class="select main-search" ng-model="name.selected" theme="bootstrap">
-        <ui-select-match placeholder="Keresés keresztnevek között...">
-          {{ $select.selected }}
-        </ui-select-match>
-        <ui-select-choices repeat="name in names" refresh="searchNames($select.search)" refresh-delay="400">
-          <small ng-bind-html="name | highlight: $select.search"></small>
-        </ui-select-choices>
-      </ui-select>
+
+      <div class="main-search">
+        <pl-select-customer />
+      </div>
     </div>
     <div class="pagebar-right">
       <input ui-date="{ dateFormat:S.date_sf }" type="text" data-type="date" placeholder="Dátum választó" ng-model="aDate" class="form-control main-date">
