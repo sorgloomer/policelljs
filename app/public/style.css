@@ -3,7 +3,7 @@
   position: absolute;
   border: 1px solid rgb(212,212,212);
   font-size: 11px;
-  top: 30px;
+  top: 40px;
   right: 0;
   bottom: 0;
   left: 0;
@@ -44,25 +44,25 @@
   width: 400px;*/
 }
 
+.ui-widget {
+  font-size: 12px;
+}
+
+.btn, .form-control {
+  border-radius: 0;
+}
+.main-bar .btn, .main-bar .form-control {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  height: 22px;
+}
+
 .main-date {
   position: relative;
   display: inline-block;
   float: right;
   width: 120px;
-}
-
-.ui-widget {
-  font-size: 12px;
-}
-.btn, .form-control {
-  padding: 1px 5px;
-  font-size: 12px;
-  line-height: 1.5;
-  border-radius: 0;
-}
-
-.form-control {
-  height: 22px;
 }
 
 .ui-select-bootstrap > .ui-select-match > button {
@@ -143,4 +143,13 @@ html, body {
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+.customer-row {
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+.customer-row:hover {
+  background-color: #f0f0f8;
 }

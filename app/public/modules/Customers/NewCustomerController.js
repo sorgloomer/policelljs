@@ -1,10 +1,19 @@
 angular.module('policellApp').controller('NewCustomerController', function(
-  $scope, HeaderService
+  $scope, HeaderService, DataService
 ) {
   HeaderService.notify('customers/new');
 
   $scope.customer = {
     name: '',
-    controller: ''
+    comment: ''
+  };
+
+  $scope.saveCustomer = function() {
+    DataService.addCustomer({
+      name: $scope.customer.name,
+      comment: $scope.customer.comment
+    }).finally(function() {
+      HeaderService.openPage('customers');
+    });
   };
 });

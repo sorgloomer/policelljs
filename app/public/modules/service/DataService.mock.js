@@ -76,6 +76,7 @@ angular.module('policellApp').factory('DataService', function($q, $delay, util, 
   function getLatestCustomers() {
     return crawl(angular.copy(customers.slice(0, 5)));
   }
+
   return {
     getData: getData,
     setData: setData,

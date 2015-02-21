@@ -1,8 +1,24 @@
 <div class="fill">
-  <span class="btn btn-default" ng-click="newCustomer()">{{ S.button_new_customer }}</span>
-  <input class="form-control" ng-change="notifySearch()" ng-model="searchText">
-  <div ng-repeat="customer in customers">
-    <strong>{{ customer.name }}</strong>
-    <div style="font-size:10px;">{{ customer.comment }}</div>
+  <div class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-form navbar-left" role="search">
+        <label>{{ S.label_nav_search }}</label>
+        <div class="form-group">
+          <input class="form-control" ng-change="notifySearch()" ng-model="searchText">
+        </div>
+      </div>
+      <div class="navbar-form navbar-right">
+        <button class="btn btn-default" ng-click="newCustomer()">{{ S.button_new_customer }}</button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h2>{{ S.header_customer_list }}</h2>
+    <div ng-repeat="customer in customers">
+      <div class="customer-row">
+        <strong>{{ customer.name }}</strong>
+        <div style="font-size:10px;">{{ customer.comment }}</div>
+      </div>
+    </div>
   </div>
 </div>
