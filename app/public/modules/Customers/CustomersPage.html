@@ -2,8 +2,10 @@
   <div class="pagebar">
     <div class="pagebar-left" role="search">
       <div class="pagebar-block form-group">
-        <input placeholder="{{ ::S.label_nav_search }}" class="form-control" ng-change="notifySearch()" ng-model="searchText">
+        <input placeholder="{{ ::S.label_nav_search }}" class="form-control" ng-change="notifySearch()" ng-model="search.value">
       </div>
+      <button class="btn btn-default" ng-click="refresh()">{{ ::S.button_refresh }}</button>
+      <span class="icon-refresh" ng-show="loading"></span>
     </div>
     <div class="pagebar-right">
       <button class="btn btn-default" ng-click="newCustomer()">{{ ::S.button_new_customer }}</button>

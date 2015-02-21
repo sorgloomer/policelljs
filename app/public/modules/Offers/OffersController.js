@@ -1,13 +1,14 @@
-angular.module('policellApp').controller('LatestController', function(
+angular.module('policellApp').controller('OffersController', function(
   $q, $scope, $load, $apply2, HeaderService,
-  CommonTableDefinition,
-  DataService) {
-  HeaderService.notify('latest');
+  OfferTableDefinition,
+  DataService
+) {
+  HeaderService.notify('offers');
 
 
   $scope.name = { selected: null };
   
-  $scope.gridOptions = CommonTableDefinition('myData');
+  $scope.gridOptions = OfferTableDefinition('myData');
   
   $scope.myData = [];
   $scope.names = [];
@@ -15,6 +16,9 @@ angular.module('policellApp').controller('LatestController', function(
     
   $scope.columns = null;
 
+  $scope.notifySearch = function() {
+
+  };
   
   DataService.getNames().then(function(r) { $scope.names = r; });
   $scope.searchNames = function(part) {

@@ -1,17 +1,10 @@
 angular.module('policellApp').controller('CustomersController', function(
-  $q, $qfcall, $qfapply, $scope, DataService, $load, debounce, HeaderService
+  $q, $qfcall, $qfapply, $scope, models, DataService, $load, debounce, HeaderService
 ) {
   HeaderService.notify('customers');
 
   $scope.customers = [];
-  $scope.searchText = '';
-
-  $scope.refresh = function() {
-    $load(DataService.getLatestCustomers().then(function(newData) {
-      $scope.customers = newData;
-    }));
-  };
-
+  $scope.search = models.customerSearch;
 
   function decorateLoader(fn) {
     return function() {
@@ -32,14 +25,13 @@ angular.module('policellApp').controller('CustomersController', function(
   }
 
   $scope.fetchSearch = loadAndInter(function(text) {
-    console.log(text);
-    return DataService.findCustomers(text).then(function(newData) {
+    return $load(DataService.findCustomers(text).then(function(newData) {
       $scope.customers = newData;
-    });
+    }));
   });
 
   $scope.notifySearch = function() {
-    $scope.fetchSearch($scope.searchText);
+    $scope.refresh();
   };
 
   $scope.newCustomer = function() {
@@ -48,6 +40,10 @@ angular.module('policellApp').controller('CustomersController', function(
 
   $scope.editCustomer = function(customer) {
     HeaderService.openPage('customers/edit/' + customer.id);
+  };
+
+  $scope.refresh = function() {
+    $scope.fetchSearch($scope.search.value);
   };
 
 

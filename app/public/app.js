@@ -22,9 +22,17 @@ angular.module('policellApp', [
       controller: 'EditCustomerController',
       templateUrl: 'modules/Customers/EditCustomerPage.html'
     })
-    .when('/latest', {
-      controller: 'LatestController',
-      templateUrl: 'modules/Latest/LatestPage.html'
+    .when('/offers', {
+      controller: 'OffersController',
+      templateUrl: 'modules/Offers/OffersPage.html'
+    })
+    .when('/offers/new', {
+      controller: 'NewOfferController',
+      templateUrl: 'modules/Offers/NewOfferPage.html'
+    })
+    .when('/offers/edit/:id', {
+      controller: 'EditOfferController',
+      templateUrl: 'modules/Offers/EditOfferPage.html'
     })
     .otherwise({
       controller: 'RouterController',

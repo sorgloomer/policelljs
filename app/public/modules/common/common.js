@@ -35,9 +35,9 @@ angular.module('policellApp').factory('$call', function() {
       return success ? $q.when(value) : $q.reject(value);
     });
   };
-}).factory('$error', function($q) {
+}).factory('$error', function($log) {
   return function $error(e) {
-    console.error(e);
+    $log.error(e);
   };
 }).factory('$done', function($q, $error, $call) {
   return function $done(p, fn) {
@@ -84,19 +84,19 @@ angular.module('policellApp').factory('$call', function() {
     return def.promise;
   };
 })
-.factory('$apply2', function() {
-  return function $apply2(scope, fn, noWarn) {
+.factory('$apply2', function($log) {
+  return function $apply2(scope, fn, makeLog) {
     if (fn) {
       switch (scope.$root.$$phase) {
         case '$apply':
         case '$digest':
-          if (!noWarn) {
-            console.warn('Change is already in $apply');
+          if (makeLog) {
+            $log.log('Change is already in $apply');
           }
           return fn();
         default:
-          if (!noWarn) {
-            console.warn('Change is not in $apply');
+          if (makeLog) {
+            $log.log('Change is not in $apply');
           }
           return scope.$apply(fn);
       }

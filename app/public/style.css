@@ -15,6 +15,7 @@
   border-radius: 5px;
   height: 34px;
   padding: 5px 10px;
+  margin-bottom: 10px;
   background-color: #f8f8f8;
 }
 
@@ -38,7 +39,7 @@
 
 .icon-refresh {
   float: right;
-  margin-right: 15px;
+  margin: 0 5px;
   width: 22px;
   height: 22px;
   background-image: url('images/refresh.png');
@@ -61,7 +62,8 @@
 }
 
 .pagebar .btn, .pagebar .form-control,
-.main-grid .btn, .main-grid .form-control
+.main-grid .btn, .main-grid .form-control,
+.offer-form .btn, .offer-form .form-control
 {
   padding: 1px 5px;
   font-size: 12px;
@@ -168,7 +170,6 @@ html, body, .fill {
 }
 
 .customer-container {
-  margin-top: 20px;
 }
 
 .customer-row {

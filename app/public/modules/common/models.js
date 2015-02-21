@@ -1,4 +1,7 @@
 angular.module('policellApp').constant('models', {
-  newCustomer: null
+  newCustomer: null,
+  customerSearch: {
+    value: ""
+  }
 });
 

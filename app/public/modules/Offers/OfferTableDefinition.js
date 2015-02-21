@@ -1,4 +1,4 @@
-angular.module('policellApp').factory('CommonTableDefinition', function(
+angular.module('policellApp').factory('OfferTableDefinition', function(
   i18n, TEMPLATES
 ) {
   var S = i18n.S;
@@ -15,14 +15,16 @@ angular.module('policellApp').factory('CommonTableDefinition', function(
       rowHeight: 22,
 
       columnDefs: [
-        { field: 'id', displayName: S.column_id, width: 40, index: 1 },
-        { field: 'info', displayName: S.column_text, width: 200, index: 0 },
+        { field: 'registration_number', displayName: S.column_registration_number, width: 70 },
+        { field: 'registration_date', displayName: S.column_date, width: 70 },
+        { field: 'foreign_id', displayName: S.column_foreign_id, width: 70 },
+        { field: 'customer_name', displayName: S.column_customer_name, width: 150 },
         {
-          field: 'age', displayName: S.column_number, index: 2,
+          field: 'age', displayName: S.column_number,
           editableCellTemplate: TEMPLATES.cell_editor_number
         },
         {
-          field: 'date', displayName: S.column_date, index: 3,
+          field: 'date', displayName: S.column_date,
           cellFilter: 'date:S.date_lf',
           editableCellTemplate: TEMPLATES.cell_editor_date
         }
