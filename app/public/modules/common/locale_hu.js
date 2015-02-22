@@ -21,6 +21,7 @@ angular.module('policellApp').constant('locale_hu', {
   "button_save_customer": "Cég mentése",
   "button_save_customer_modifications": "Módosítások mentése",
   "button_cancel": "Mégsem",
+  "button_clear": "Töröl",
   "button_modify_customer": "Szerkeszt",
   "button_modify_offer": "Szerkeszt",
 
@@ -39,6 +40,8 @@ angular.module('policellApp').constant('locale_hu', {
   "column_foreign_id": "Azonosító",
   "column_customer_name": "Cég",
   "column_registration_number": "Sorszám",
+
+  "customer_select": "Válasszon céget",
 
   "header_new_customer": "Új cég regisztrálása",
   "header_edit_customer": "Cég szerkesztése",
