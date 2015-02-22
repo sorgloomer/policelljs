@@ -60,7 +60,6 @@
 .btn, .form-control {
   border-radius: 0;
 }
-
 .pagebar .btn, .pagebar .form-control,
 .main-grid .btn, .main-grid .form-control,
 .offer-form .btn, .offer-form .form-control
@@ -69,6 +68,10 @@
   font-size: 12px;
   line-height: 1.5;
   height: 22px;
+}
+
+.offer-form textarea.form-control {
+  height: auto;
 }
 
 .main-date {
@@ -196,4 +199,11 @@ html, body, .fill {
 }
 .customer-description {
   font-size: 11px;
+}
+
+.myrow {
+  margin: 0;
+  box-sizing: border-box;
+  display: table;
+  width: 100%;
 }

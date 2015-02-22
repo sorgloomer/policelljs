@@ -4,19 +4,30 @@ angular.module('policellApp').directive('plSelectCustomer', function(DataService
   '<ui-select-match>' +
   '{{ $select.selected }}' +
   '</ui-select-match>' +
-  '<ui-select-choices repeat="name in names" refresh="searchNames($select.search)" refresh-delay="400">' +
-  '<small ng-bind-html="name | highlight: $select.search"></small>' +
+  '<ui-select-choices repeat="item in items" refresh="searchCustomer($select.search)" refresh-delay="250">' +
+  '<small ng-bind-html="item | highlight: $select.search"></small>' +
   '</ui-select-choices>' +
   '</ui-select>';
 
+  function control($scope) {
+    $scope.items = null;
+    $scope.searchCustomer = function(text) {
+      DataService.searchNames(text).then(function(items) {
+        $scope.items = items;
+      });
+    };
+  }
   function link(scope, element, attrs) {
-    console.log(attrs);
-    var elem = angular.element(TEMPLATE);
-    elem.attr('ng-model', attrs.ngModel);
-    elem.addClass('class', attrs.class);
-    elem.children().eq(0).attr('placeholder', attrs.placeholder);
-    elem = $compile(elem)(scope);
-    element.replaceWith(elem);
+    control(scope);
+
+    var newElem = angular.element(TEMPLATE);
+    newElem.attr('ng-model', attrs.ngModel);
+    newElem.addClass(attrs.class);
+    var match = newElem.children().eq(0);
+    match.attr('placeholder', attrs.placeholder);
+
+    newElem = $compile(newElem)(scope);
+    element.replaceWith(newElem);
   }
   return {
     restrict: 'E',

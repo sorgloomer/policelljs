@@ -2,6 +2,7 @@ angular.module('policellApp').constant('locale_hu', {
   "date_sf": "yy-mm-dd",
   "date_lf": "yyyy-MM-dd",
   "time_lf": "yyyy-MM-dd hh:mm",
+  "text_date": "Dátum",
 
   "menu_title_offers": "Ajánlatok",
   "menu_title_search": "Keresés",
@@ -16,6 +17,7 @@ angular.module('policellApp').constant('locale_hu', {
   "button_refresh": "Frissítés",
   "button_new_customer": "Új cég...",
   "button_new_offer": "Új ajánlat...",
+  "button_save": "Mentés",
   "button_save_customer": "Cég mentése",
   "button_save_customer_modifications": "Módosítások mentése",
   "button_cancel": "Mégsem",
@@ -24,6 +26,8 @@ angular.module('policellApp').constant('locale_hu', {
 
   "form_offer_date": "Dátum",
   "form_customer": "Cég",
+  "form_comment": "Megjegyzés",
+  "form_foreign_id": "Azonosító",
   "form_product_type": "Termék",
   "form_product_size": "Méret",
   "form_product_properties": "Kivitel",
