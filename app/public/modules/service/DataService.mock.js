@@ -95,6 +95,11 @@ angular.module('policellApp').factory('DataService', function($q, $delay, util, 
     return crawl(angular.copy(customers.slice(-CUSTOMER_RESULT_COUNT).reverse()));
   }
 
+
+  function isAdmin() {
+    return crawl(true);
+  }
+
   return {
     getData: getData,
     setData: setData,
@@ -106,7 +111,8 @@ angular.module('policellApp').factory('DataService', function($q, $delay, util, 
     addCustomer: addCustomer,
     findCustomers: findCustomers,
     findCustomerById: findCustomerById,
-    getLatestCustomers: getLatestCustomers
+    getLatestCustomers: getLatestCustomers,
+    isAdmin: isAdmin
   };
 })
 .constant('NAMES', [ "Ábel", "Ádám", "Adrián", "Ákos", "Alex", "Alexander", "Andor", "András", "Ármin", "Áron", "Árpád", "Attila",

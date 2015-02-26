@@ -55,9 +55,15 @@
   </form>
   <div class="myrow">
     <div class="form-group col-sm-12">
-      <button class="btn btn-default" ng-click="save()">{{ ::S.button_save }}</button>
-      <button class="btn btn-default pull-right" ng-click="cancel()">{{ ::S.button_cancel }}</button>
-      <button class="btn btn-default pull-right" ng-click="clear()">{{ ::S.button_clear }}</button>
+      <div class="input-group">
+        <button class="btn btn-default" ng-click="save()">{{ ::S.button_save }}</button>
+      </div>
+      <div class="input-group">
+        <button class="btn btn-default pull-right" ng-click="cancel()">{{ ::S.button_cancel }}</button>
+      </div>
+      <div class="input-group">
+        <button class="btn btn-default pull-right" ng-click="clear()">{{ ::S.button_clear }}</button>
+      </div>
     </div>
   </div>
 </div>

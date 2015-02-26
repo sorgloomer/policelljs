@@ -34,6 +34,10 @@ angular.module('policellApp', [
       controller: 'EditOfferController',
       templateUrl: 'modules/Offers/EditOfferPage.html'
     })
+    .when('/admin', {
+      controller: 'AdminController',
+      templateUrl: 'modules/Admin/AdminPage.html'
+    })
     .otherwise({
       controller: 'RouterController',
       template: ''

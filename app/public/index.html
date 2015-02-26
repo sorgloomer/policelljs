@@ -36,6 +36,7 @@
   <script src="modules/common/models.js"></script>
 
   <script src="modules/service/DataService.mock.js"></script>
+  <script src="modules/Admin/AdminController.js"></script>
   <script src="modules/Search/SearchController.js"></script>
   <script src="modules/Header/HeaderController.js"></script>
   <script src="modules/Header/HeaderService.js"></script>
@@ -54,9 +55,11 @@
       <a class="header-item" href="" ng-class="{ selected: isPage('offers') }" ng-click="openPage('offers')">{{ ::S.menu_title_offers }}</a>
       <a class="header-item" href="" ng-class="{ selected: isPage('offers/new') }" ng-click="openPage('offers/new')">{{ ::S.menu_title_new_offer }}</a>
       <a class="header-item" href="" ng-class="{ selected: isPage('customers') }" ng-click="openPage('customers')">{{ ::S.menu_title_customers }}</a>
-      <a class="header-item" ng-show="models.newCustomer" href="" ng-class="{ selected: isPage('customers/new') }" ng-click="openPage('customers/new')">{{ ::S.menu_title_new_customer }}</a>
-      <a class="header-item" ng-show="models.editCustomer" href="" ng-class="{ selected: isPage('customers/edit') }" ng-click="openPage('customers/edit')">{{ ::S.menu_title_edit_customer }}</a>
-      <a class="header-item" ng-show="models.editOffer" href="" ng-class="{ selected: isPage('offers/edit') }" ng-click="openPage('offers/edit')">{{ ::S.menu_title_edit_offer }}</a>
+
+      <a class="header-item ng-hide" href="" ng-show="isAdmin" ng-class="{ selected: isPage('admin') }" ng-click="openPage('admin')">{{ ::S.menu_title_admin }}</a>
+      <a class="header-item ng-hide" ng-show="models.newCustomer" href="" ng-class="{ selected: isPage('customers/new') }" ng-click="openPage('customers/new')">{{ ::S.menu_title_new_customer }}</a>
+      <a class="header-item ng-hide" ng-show="models.editCustomer" href="" ng-class="{ selected: isPage('customers/edit') }" ng-click="openPage('customers/edit')">{{ ::S.menu_title_edit_customer }}</a>
+      <a class="header-item ng-hide" ng-show="models.editOffer" href="" ng-class="{ selected: isPage('offers/edit') }" ng-click="openPage('offers/edit')">{{ ::S.menu_title_edit_offer }}</a>
     </div>
   </div>
 
