@@ -1,9 +1,9 @@
 angular.module('policellApp').controller('OffersController', function(
-  $q, $scope, $load, $apply2, HeaderService,
+  $q, $scope, $load, $apply2, NavigationService,
   OfferTableDefinition,
   DataService
 ) {
-  HeaderService.notify('offers');
+  NavigationService.notify('offers');
 
 
   $scope.name = { selected: null };
@@ -31,7 +31,11 @@ angular.module('policellApp').controller('OffersController', function(
   $scope.add = function() {
     $load(DataService.addData(), $scope.refresh);
   };
-    
+
+  $scope.editOffer = function() {
+    NavigationService.openPage('offers/edit/0');
+  };
+
   $scope.$on('ngGridEventColumns', function(evt, newColumns){
     $apply2($scope, function() {
       $scope.columns = newColumns;

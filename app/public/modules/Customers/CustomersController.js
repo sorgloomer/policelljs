@@ -1,7 +1,7 @@
 angular.module('policellApp').controller('CustomersController', function(
-  $q, $qfcall, $qfapply, $scope, models, DataService, $load, debounce, HeaderService
+  $q, $qfcall, $qfapply, $scope, models, DataService, $load, debounce, NavigationService
 ) {
-  HeaderService.notify('customers');
+  NavigationService.notify('customers');
 
   $scope.customers = [];
   $scope.search = models.customerSearch;
@@ -35,11 +35,11 @@ angular.module('policellApp').controller('CustomersController', function(
   };
 
   $scope.newCustomer = function() {
-    HeaderService.openPage('customers/new');
+    NavigationService.openPage('customers/new');
   };
 
   $scope.editCustomer = function(customer) {
-    HeaderService.openPage('customers/edit/' + customer.id);
+    NavigationService.openPage('customers/edit/' + customer.id);
   };
 
   $scope.refresh = function() {

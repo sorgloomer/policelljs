@@ -1,7 +1,7 @@
 angular.module('policellApp').controller('EditCustomerController', function(
-  $scope, $done, models, HeaderService, DataService, $routeParams
+  $scope, $done, models, NavigationService, DataService, $routeParams
 ) {
-  HeaderService.notify('customers/edit');
+  NavigationService.notify('customers/edit');
 
   $scope.customer = null;
   $scope.oldName = null;
@@ -14,12 +14,12 @@ angular.module('policellApp').controller('EditCustomerController', function(
 
   $scope.applyCustomer = function() {
     $done(DataService.updateCustomer($scope.customer.id, $scope.customer).then(function() {
-      HeaderService.openPage('customers');
+      NavigationService.openPage('customers');
     }));
   };
   $scope.cancel = function() {
     models.editCustomer = null;
-    HeaderService.openPage('customers');
+    NavigationService.openPage('customers');
   };
 
 });

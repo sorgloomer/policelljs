@@ -1,5 +1,5 @@
 angular.module('policellApp').controller('RouterController', function(
-  HeaderService
+  NavigationService
 ) {
-  HeaderService.openPage('offers');
+  NavigationService.openPage('offers');
 });

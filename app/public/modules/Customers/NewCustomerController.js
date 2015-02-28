@@ -1,7 +1,7 @@
 angular.module('policellApp').controller('NewCustomerController', function(
-  $scope, models, HeaderService, DataService
+  $scope, models, NavigationService, DataService
 ) {
-  HeaderService.notify('customers/new');
+  NavigationService.notify('customers/new');
 
   if (models.newCustomer) {
     $scope.customer = models.newCustomer;
@@ -18,11 +18,11 @@ angular.module('policellApp').controller('NewCustomerController', function(
       comment: $scope.customer.comment
     }).then(function() {
       models.newCustomer = null;
-      HeaderService.openPage('customers');
+      NavigationService.openPage('customers');
     });
   };
   $scope.cancel = function() {
     models.newCustomer = null;
-    HeaderService.openPage('customers');
+    NavigationService.openPage('customers');
   };
 });

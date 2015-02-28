@@ -9,6 +9,7 @@ angular.module('policellApp').constant('locale_hu', {
   "menu_title_customers": "Cégek",
   "menu_title_new_customer": "Új cég",
   "menu_title_new_offer": "Új ajánlat",
+  "menu_title_edit_offer": "Szerkeszt",
   "menu_title_admin": "Admin",
 
   "label_customer_name": "Cég neve",
@@ -61,6 +62,7 @@ angular.module('policellApp').constant('locale_hu', {
 
   "header_new_customer": "Új cég regisztrálása",
   "header_edit_customer": "Cég szerkesztése",
+  "header_edit_offer": "Ajánlat szerkesztése \u2014 {0}",
   "header_customer_list": "Cégek listája",
   "header_new_offer": "Új ajánlat létrehozása",
   "header_backup": "Biztonsági mentés",

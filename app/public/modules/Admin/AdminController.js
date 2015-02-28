@@ -1,7 +1,7 @@
 angular.module('policellApp').controller('AdminController', function(
-  $scope, $load, DataService, HeaderService
+  $scope, $load, DataService, NavigationService
 ) {
-  HeaderService.notify('admin');
+  NavigationService.notify('admin');
   $scope.rebuild = function() {
 
   };

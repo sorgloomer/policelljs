@@ -1,4 +1,8 @@
 angular.module('policellApp').controller('EditOfferController', function(
+  NavigationService, models
 ) {
-  HeaderService.notify('offers/edit');
+  NavigationService.notify('offers/edit');
+
+  models.editOffer = {};
+
 });

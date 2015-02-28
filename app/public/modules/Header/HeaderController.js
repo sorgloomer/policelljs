@@ -1,8 +1,8 @@
 angular.module('policellApp').controller('HeaderController', function(
-  $scope, HeaderService, models, DataService
+  $scope, NavigationService, models, DataService
 ) {
-  $scope.isPage = HeaderService.isPage;
-  $scope.openPage = HeaderService.openPage;
+  $scope.isPage = NavigationService.isPage;
+  $scope.openPage = NavigationService.openPage;
   $scope.models = models;
   $scope.isAdmin = false;
 

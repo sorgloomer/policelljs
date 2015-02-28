@@ -1,4 +1,4 @@
-angular.module('policellApp').factory('HeaderService', function(
+angular.module('policellApp').factory('NavigationService', function(
   $rootScope, $location
 ) {
   var currentPage = null;

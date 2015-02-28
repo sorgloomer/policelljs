@@ -1,7 +1,7 @@
 angular.module('policellApp').controller('NewOfferController', function(
-  $scope, models, HeaderService, util
+  $scope, models, NavigationService, util
 ) {
-  HeaderService.notify('offers/new');
+  NavigationService.notify('offers/new');
 
   function init() {
     if (models.newOffer) {
@@ -29,7 +29,7 @@ angular.module('policellApp').controller('NewOfferController', function(
 
   $scope.cancel = function() {
     models.newOffer = null;
-    HeaderService.openPage('offers');
+    NavigationService.openPage('offers');
   };
 
   function trim(s) {

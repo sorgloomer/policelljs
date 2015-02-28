@@ -1,0 +1,133 @@
+<div class="apage">
+  <h1 class="page-header">{{ S.header_edit_offer | substitute:offer.registration_id }}</h1>
+  <form class="offer-form">
+    <div class="myrow">
+      <div class="form-group col-sm-6">
+        <label>{{ ::S.form_offer_date }}</label>
+        <pl-datepicker placeholder="{{ ::S.form_offer_date }}"
+                       ng-model="offer.registration_date"
+                       class="form-control">
+      </div>
+    </div>
+    <div class="myrow">
+      <div class="form-group col-sm-6">
+        <label>{{ ::S.form_customer }}</label>
+        <pl-select-customer placeholder="{{ ::S.form_customer }}"
+                            ng-model="offer.customer">
+        </pl-select-customer>
+      </div>
+      <div class="form-group col-sm-6">
+        <label>{{ ::S.form_foreign_id }}</label>
+        <input type="text" placeholder="{{ ::S.form_foreign_id }}"
+               ng-model="offer.foreign_id"
+               class="form-control">
+      </div>
+    </div>
+    <div class="myrow">
+      <div class="form-group col-sm-6">
+        <label>{{ ::S.form_product_type }}</label>
+        <input type="text" placeholder="{{ ::S.form_product_type }}"
+               ng-model="offer.product_type"
+               class="form-control">
+      </div>
+      <div class="form-group col-sm-6">
+        <label>{{ ::S.form_product_size }}</label>
+        <input type="text" placeholder="{{ ::S.form_product_size }}"
+               ng-model="offer.product_size"
+               class="form-control">
+      </div>
+    </div>
+    <div class="myrow">
+      <div class="form-group col-sm-12">
+        <label>{{ ::S.form_product_properties }}</label>
+        <input type="text" placeholder="{{ ::S.form_product_properties }}"
+               ng-model="offer.product_properties"
+               class="form-control">
+      </div>
+    </div>
+    <div class="myrow">
+      <div class="form-group col-xs-12">
+        <button class="btn btn-default btn-product-property" ng-click="addProperty(v)" ng-repeat-start="v in util.range(30, iname) track by $index">{{ v }}</button>
+        <span ng-repeat-end> </span>
+      </div>
+    </div>
+    <div class="myrow">
+      <div class="form-group col-sm-6">
+        <label>{{ ::S.form_minimum_order }}</label>
+        <input type="text" placeholder="{{ ::S.form_minimum_order }}"
+               ng-model="offer.minimum_order"
+               class="form-control">
+      </div>
+      <div class="form-group col-sm-6">
+        <label>{{ ::S.form_offer_quantity }}</label>
+        <input type="text" placeholder="{{ ::S.form_offer_quantity }}"
+               ng-model="offer.offer_quantity"
+               class="form-control">
+      </div>
+    </div>
+    <div class="myrow">
+      <div class="form-group col-sm-6">
+        <label>{{ ::S.form_row_material_cost }}</label>
+        <input type="text" placeholder="{{ ::S.form_row_material_cost }}"
+               ng-model="offer.row_material_cost"
+               class="form-control">
+      </div>
+      <div class="form-group col-sm-6">
+        <label>{{ ::S.form_weight_per_piece }}</label>
+        <input type="number" step="any" placeholder="{{ ::S.form_weight_per_piece }}"
+               ng-model="offer.weight_per_piece"
+               class="form-control">
+      </div>
+    </div>
+    <div class="myrow">
+      <div class="form-group col-sm-6">
+        <label>{{ ::S.form_cost_per_weight }}</label>
+        <input type="number" step="any" placeholder="{{ ::S.form_cost_per_weight }}"
+               ng-model="offer.cost_per_weight"
+               class="form-control">
+        <button class="btn btn-default pull-right" ng-click="calcCostPerWeight()">{{ ::S.button_calculate_cost_per_weight }}</button>
+      </div>
+      <div class="form-group col-sm-6">
+        <label>{{ ::S.form_cost_currency }}</label>
+        <input type="text" placeholder="{{ ::S.form_cost_currency }}"
+               ng-model="offer.cost_currency"
+               class="form-control">
+      </div>
+    </div>
+    <div class="myrow">
+      <div class="form-group col-sm-6">
+        <label>{{ ::S.form_cost_per_piece }}</label>
+        <input type="number" step="any" placeholder="{{ ::S.form_cost_per_piece }}"
+               ng-model="offer.cost_per_piece"
+               class="form-control">
+        <button class="btn btn-default pull-right" ng-click="calcCostPerPiece()">{{ ::S.button_calculate_cost_per_piece }}</button>
+      </div>
+      <div class="form-group col-sm-6">
+        <label>{{ S.form_exchange_rate | substitute:offer.cost_currency }}</label>
+        <input type="number" step="any" placeholder="{{ S.form_exchange_rate | substitute:offer.cost_currency }}"
+               ng-model="offer.exchange_rate"
+               class="form-control">
+      </div>
+    </div>
+    <div class="myrow">
+      <div class="form-group col-sm-12">
+        <label>{{ ::S.form_comment }}</label>
+        <textarea placeholder="{{ ::S.form_comment }}"
+                  rows="4" ng-model="offer.comment"
+                  class="form-control">
+        </textarea>
+      </div>
+    </div>
+
+  </form>
+  <div class="myrow">
+    <div class="col-sm-12">
+      <button class="btn btn-default" ng-click="save()">{{ ::S.button_save }}</button>
+      <span class="pull-right">
+        <button class="btn btn-default" ng-click="clear()">{{ ::S.button_clear }}</button>
+        <button class="btn btn-default" ng-click="cancel()">{{ ::S.button_cancel }}</button>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="pl-footer"></div>
