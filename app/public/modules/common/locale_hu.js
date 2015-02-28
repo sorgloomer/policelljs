@@ -28,6 +28,9 @@ angular.module('policellApp').constant('locale_hu', {
   "button_backup": "Biztonsági mentés készítés most",
   "button_import": "SDB állomány importálása",
 
+  "button_calculate_cost_per_weight": "Számol...",
+  "button_calculate_cost_per_piece": "Számol...",
+
   "form_offer_date": "Dátum",
   "form_customer": "Cég",
   "form_comment": "Megjegyzés",
@@ -35,6 +38,16 @@ angular.module('policellApp').constant('locale_hu', {
   "form_product_type": "Termék",
   "form_product_size": "Méret",
   "form_product_properties": "Kivitel",
+
+  "form_minimum_order": "Minimális rendelési mennyiség",
+  "form_offer_quantity": "Ajánlati mennyiség",
+  "form_row_material_cost": "Alapanyag ár (HUF/kg)",
+  "form_weight_per_piece": "Súly (g/db)",
+  "form_exchange_rate": "Árfolyam (HUF/{0})",
+
+  "form_cost_per_weight": "Ár/kg",
+  "form_cost_per_piece": "Ár/db",
+  "form_cost_currency": "Árak pénzneme",
 
   "column_id": "ID",
   "column_text": "Szöveg",

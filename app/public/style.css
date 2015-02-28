@@ -175,6 +175,10 @@ html, body, .fill {
   left: 0;
 }
 
+.btn-product-property {
+  display: inline-block;
+}
+
 .customer-container {
 }
 
@@ -204,9 +208,18 @@ html, body, .fill {
   font-size: 11px;
 }
 
+.pl-footer {
+  width: 100%;
+  height: 40px;
+}
+
 .myrow {
   margin: 0;
   box-sizing: border-box;
   display: table;
   width: 100%;
+}
+
+.apage {
+  margin: 5px;
 }
