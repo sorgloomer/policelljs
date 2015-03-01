@@ -6,6 +6,10 @@ var newl = '\r\n', br = '<br>';
 
 var app = express(), api = express();
 
+
+var database_file = process.argv[3] || 'offers.sqlite3';
+var backup_folder = 'backups';
+
 app.use('/api', api);
 app.use(express.static(__dirname + '/public'));
 
@@ -82,6 +86,45 @@ api.post('/add', function(req, res) {
   }
 });
 
+function fixnum(str, digits) {
+  str = '' + str;
+  while (str.length < digits) str = '0' + str;
+  return str;
+}
+
+function backup_filename(datetime, type) {
+  if (datetime === undefined) datetime = new Date();
+  if (type === undefined) type = 'auto';
+
+
+  var yyyy = fixnum(datetime.getFullYear(), 4);
+  var MM = fixnum(datetime.getMonth() + 1, 2);
+  var dd = fixnum(datetime.getDate(), 2);
+
+  var hh = fixnum(datetime.getHours(), 2);
+  var mm = fixnum(datetime.getMinutes(), 2);
+  var ss = fixnum(datetime.getSeconds(), 2);
+  return type + ' ' + yyyy + '-' + MM + '-' + dd + ' ' + hh + ':' + mm + ':' + ss + '.sqlite';
+}
+
+function doAutoBackup() {
+  var filename = backup_filename();
+  var filepath = path.join(backup_folder, filename);
+  console.log(filepath);
+
+}
+api.post('/backup/manual', function(res, req) {
+  try {
+    doAutoBackup();
+    res.send('good');
+  } catch (e) {
+    console.error(e);
+    res.send('error');
+  }
+});
+
+doAutoBackup();
+
 function later(fn) {
 	setTimeout(fn, 500);
 }
@@ -101,7 +144,7 @@ api.get('/stop', function(req, res) {
 });
 
 
-var db = new sqlite3.Database(process.argv[3] || 'offers_db');
+var db = new sqlite3.Database(database_file);
 db.serialize(function() {
   db.run("create table if not exists test_table (id integer primary key autoincrement, info text, age integer)");
   db.get("select count(*) as count from test_table", function(e, row) {
