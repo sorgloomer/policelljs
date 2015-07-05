@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    html, body {
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    .window-content div {
+      display: flex;
+      margin: 5px;
+      padding: 5px;
+    }
+
+    .window, .window-content {
+      display: flex;
+      flex-flow: column;
+      background-color: deepskyblue;
+      min-height: 100%;
+    }
+
+    .window-content {
+      flex: 1;
+      margin: 5px;
+    }
+
+    .header {
+      height: 60px;
+      background-color: pink;
+    }
+
+    .page {
+      flex: 1;
+      flex-flow: column;
+      overflow: auto;
+      background-color: gray;
+    }
+
+    .page-menu {
+      background-color: gold;
+    }
+
+    .page-content {
+      align-content: stretch;
+      flex: 1;
+      overflow: auto;
+      flex-flow: row;
+      background-color: magenta;
+    }
+
+    .page-content-left {
+      flex: 1;
+      overflow: auto;
+      background-color: cyan;
+      min-height: 20px;
+    }
+    .page-content-right {
+      flex: 1;
+      overflow: auto;
+      background-color: yellow;
+      min-height: 20px;
+    }
+
+    .page-footer {
+      min-height: 40px;
+      background-color: green;
+    }
+
+    .floater {
+      display: block;
+      position: relative;
+      left: 10px;
+      top: 0;
+      height: 100%;
+      background-color: white;
+      box-shadow: black 1px 1px 8px;
+    }
+
+
+  </style>
+</head>
+<body>
+<div class="window">
+  <div class="window-content">
+    <div class="header">
+      valami szöveg és menük
+    </div>
+    <div class="page">
+      <div class="page-menu">
+        <div class="floater">asdasdasd</div>
+        ez az igazi menü &bull; menü &bull; menü<br>
+        asdasda
+      </div>
+      <div class="page-content">
+        <div class="page-content-left">
+        </div>
+        <div class="page-content-right">
+        </div>
+      </div>
+      <div class="page-footer"></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
